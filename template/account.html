@@ -1,0 +1,23 @@
+{% extends 'black.html' %}
+{%load static%}
+
+{% block css%}
+
+<style>
+h2{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: italic;
+}
+</style>
+
+{% endblock css%}
+
+{% block banner%}
+<h2>CREATE AND LOGIN IN YOUR ACCOUNT </h2>
+{% endblock banner%}
+
+{% block content%}
+{% include 'account_layout.html'%}
+{% endblock content%}

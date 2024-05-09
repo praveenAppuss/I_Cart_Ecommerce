@@ -1,0 +1,63 @@
+{% load static%}
+
+{% load multiply %}
+
+{% load gettotal %}
+
+    <!-- Cart items details -->
+    <div class="small-container cart-page">
+        {% if cart and cart.added_item.all %}
+        <table>
+            <tbody>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+            {% for item in cart.added_item.all %}
+
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="{{ item.product.image.url }}">
+                        <div>
+                            <p>{{item.product.title}}</p>
+                            <small>Price: ${{item.product.price}}</small>
+                            <br>
+                            <a href="{% url 'del' item.id %}">Remove</a>
+                        </div>
+                    </div>
+                </td>
+                <td><input type="number" disabled value="{{item.quantity}}"></td>
+                <td>${% multiply item.product.price item.quantity%}</td>
+               
+            </tr>
+            {% endfor %}
+            
+            
+        </tbody> </table>
+       
+        <div class="total-price">
+            <table>
+                <tbody>
+              
+                <tr>
+                    <td>Total</td>
+                    <td>{% gettotal cart %}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <form action="{% url 'check'%}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="total" value="{% gettotal cart %}">
+                        <button class="btn" type="submit" style="width: 100px; margin-top: 100px;">confirm</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody> </table>
+        </div>
+        {% else %}
+        <p>cart is empty</p>
+        {% endif %}
+    </div>
+    

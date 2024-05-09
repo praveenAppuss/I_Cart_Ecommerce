@@ -1,0 +1,62 @@
+
+{% extends 'black.html' %}
+{% load chunks %}
+
+
+{% load static %}
+{% block banner%}
+    <h1 style="color: black; text-align: center; margin-top: 100px;">
+        COLLOECTION MELA
+    </h1>
+{% endblock banner%}
+{% block content %}
+
+           
+
+<div class="small-container">
+    <div class="row row-2">
+        <h2>All Products</h2>
+         
+    </div>
+    {% for product in category|chunks:4 %}
+    <div class="row">
+        {% for object in product %}
+       
+        <div class="col-4">
+            <a href="{% url 'pro_details' object.id%}"><img src="{{ object.image.url }}" alt="Product Image">
+            </a>
+            <h4>{{object.title}}</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>${{object.price}}</p>
+        </div>
+        {% endfor %}
+
+    </div>
+    {% endfor %}
+
+    <div class="page-btn">  
+
+        {% if category.has_previous%}
+        <a href="?page={{category.previous_page_number}}"><span><<<</span></a>
+        {% endif %}
+        {% for i in category.paginator.page_range %}
+        <a href="?page={{i}}"><span>{{i}}</span></a>
+        <!-- <a href="?page=2"><span>2</span></a>
+        <a href="?page=3"><span>3</span></a>
+        <a href="?page=4"><span>4</span></a> -->
+        {% endfor %}
+        {% if category.has_next%}
+        <a href="?page={{category.next_page_number}}"><span>>>>  </span></a>
+        {% endif %}
+        <!-- <span>&#8594;</span> -->
+    </div>
+</div>
+
+{% endblock content %}
+

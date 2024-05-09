@@ -1,0 +1,47 @@
+{% extends 'black.html' %}
+{%load static%}
+{% block banner%}
+<h1 style="text-align: center;color: black;margin-top: 100px;">PRODUCT DETAILS</h1>
+{% endblock banner%}
+
+{% block content%}
+<div class="small-container single-product" style="margin-bottom: 100px;">
+    <div class="row">
+        <div class="col-2">
+            <img src="{{ obj.image.url }}" alt="Product Image" width="100%" id="ProductImg">
+
+            <!-- <div class="small-img-row">
+                <div class="small-img-col">
+                    <img src="{% static 'images/gallery-1.jpg'%}" width="100%" class="small-img">
+                </div>
+                <div class="small-img-col">
+                    <img src="{% static 'images/gallery-2.jpg'%}" width="100%" class="small-img">
+                </div>
+                <div class="small-img-col">
+                    <img src="{% static 'images/gallery-3.jpg'%}" width="100%" class="small-img">
+                </div>
+                <div class="small-img-col">
+                    <img src="{% static 'images/gallery-4.jpg'%}" width="100%" class="small-img">
+                </div>
+            </div> -->
+
+        </div>
+        <div class="col-2">
+            <p>{{obj.tile}}</p>
+            <h1>{{obj.tile}}</h1>
+            <h4>${{obj.price}}</h4>
+
+            <form action="{% url 'add_to_cart'%}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" value="{{obj.id}}" name="Product_id">
+                <input type="number"  name="quantity" value="1">
+                <button type="submit" class="btn">Add To Cart</button>
+            </form>
+
+            <h3>Product Details <i class="fa fa-indent"></i></h3>
+            <br>
+            <p>{{obj.description}}</p>
+        </div>
+    </div>
+</div>
+{% endblock content%}

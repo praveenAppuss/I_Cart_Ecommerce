@@ -1,0 +1,124 @@
+  <!-- Feadtued Categories -->
+{% load static %}    
+    
+  <!-- <div class="categories">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3">
+                <img src="{% static 'images/category-1.jpg' %}">
+            </div>
+            <div class="col-3">
+                <img src="{% static 'images/category-2.jpg'%}">
+            </div>
+            <div class="col-3">
+                <img src="{% static 'images/category-3.jpg' %}">
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Featured Products -->
+
+
+<div class="small-container">
+    <h2 class="title">Featured Products</h2>
+    <div class="row">
+        {% for object in category %}
+       
+        <div class="col-4">
+            {% if user.is_authenticated %}
+            <a href="{% url 'pro'%}"><img src="{{ object.image.url }}" alt="Product Image">
+            </a>
+            {% else %}
+            <a href="{% url 'account'%}"><img src="{{ object.image.url }}" alt="Product Image">
+            </a>
+            {% endif %}
+            <h4>{{object.title}}</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>${{object.price}}</p>
+        </div>
+        {% endfor %}
+        
+    </div>
+    <h2 class="title">Latest Products</h2>
+    <div class="row">
+        {% for object in latest %}
+       
+        <div class="col-4">
+            {% if user.is_authenticated %}
+            <a href="{% url 'pro'%}"><img src="{{ object.image.url }}" alt="Product Image">
+            </a>
+            {% else %}
+            <a href="{% url 'account'%}"><img src="{{ object.image.url }}" alt="Product Image">
+            </a>
+            {% endif %}
+            <h4>{{object.title}}</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>${{object.price}}</p>
+        </div>
+        {% endfor %}
+        
+    </div>
+    <!-- <div class="row">
+        <div class="col-4">
+            <img src="{% static 'images/product-9.jpg'%}">
+            <h4>Red Printed T-Shirt</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4">
+            <img src="{% static 'images/product-10.jpg'%}">
+            <h4>Red Printed T-Shirt</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4">
+            <img src="{%static 'images/product-11.jpg'%}">
+            <h4>Red Printed T-Shirt</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4">
+            <img src="{%static 'images/product-12.jpg'%}">
+            <h4>Red Printed T-Shirt</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+    </div> -->
+</div>

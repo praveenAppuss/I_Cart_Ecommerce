@@ -1,0 +1,45 @@
+{% extends 'black.html' %}
+{% load static%}
+{% block css%}
+
+<style>
+h2{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#btn{
+    width: 100px; 
+    color: #ffffff;
+    background-color:red; 
+    padding: 10px; 
+    outline: none;
+    border: none; 
+    border-radius: 5px; 
+    font-size: 15px;
+    font-weight: 600;
+}
+#btn:hover{
+    background-color: rgb(255,1,1,1);
+    color: #f1f1f1;
+    cursor: pointer;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+}
+</style>
+
+{% endblock css%}
+
+{% block banner%}
+<h2>ORDERD ITEMS</h2>
+{% endblock banner%}
+
+{% block content %}
+{% if messages %}
+{% for message in messages%}
+<h2 style="text-align: center; color: blue;">{{message}}</h1>
+{% endfor %}
+{% endif %}
+{% include 'cart_layout.html' %}
+
+{% endblock content %}
